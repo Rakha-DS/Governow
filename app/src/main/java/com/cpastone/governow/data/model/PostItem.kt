@@ -5,7 +5,8 @@ data class PostItem(
     val like: Int,
     val caption: String,
     val userId: String,
-    val polls: List<PollItem>?
+    val polls: List<PollItem>?,
+    val id: String
 )
 
 data class PollItem(
