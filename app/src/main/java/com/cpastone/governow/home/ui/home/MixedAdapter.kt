@@ -68,8 +68,7 @@ class MixedAdapter(private val itemList: List<PostItem>) : RecyclerView.Adapter<
             binding.btnViewResults.setOnClickListener {
                 val context = it.context
                 val intent = Intent(context, DetailVoteActivity::class.java).apply {
-                    putExtra("VOTE_QUESTION", item.caption)
-                    putExtra("POLL_ITEMS", item.polls as ArrayList<PollItem>)
+                    putExtra("POST_ID", item.id)
                 }
                 context.startActivity(intent)
             }

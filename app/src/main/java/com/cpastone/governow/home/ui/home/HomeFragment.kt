@@ -34,14 +34,16 @@ class HomeFragment : Fragment() {
                 PollItem(option = "Bangun Gedung", voteCount = 0),
                 PollItem(option = "Jalan tol", voteCount = 0),
                 PollItem(option = "Bangun Jembatan", voteCount = 0)
-            )
+            ),
+            id = ""
         ),
         PostItem(
             date = "2024-06-20",
             like = 0,
             caption = "Apakabar masyarakat Makassar",
             userId = "Walikota Makassar",
-            polls = null
+            polls = null,
+            id = ""
         ),
         PostItem(
             date = "2024-06-20",
@@ -51,14 +53,16 @@ class HomeFragment : Fragment() {
             polls = listOf(
                 PollItem(option = "Setuju", voteCount = 0),
                 PollItem(option = "Tidak Setuju", voteCount = 0)
-            )
+            ),
+            id = ""
         ),
         PostItem(
             date = "2024-06-20",
             like = 0,
             caption = "Coba tebak siapa nama walikota Makassar saat ini?",
             userId = "Walikota Makassar",
-            polls = null
+            polls = null,
+            id = ""
         )
     )
 
@@ -123,4 +127,5 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
+
 
