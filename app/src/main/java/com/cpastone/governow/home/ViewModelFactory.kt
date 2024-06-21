@@ -8,6 +8,7 @@ import com.capstone.governow.di.Injection
 import com.cpastone.governow.home.ui.aspiration.AddAspirationViewModel
 import com.cpastone.governow.home.ui.edit.EditProfileViewModel
 import com.cpastone.governow.home.ui.home.HomeViewModel
+import com.cpastone.governow.home.ui.home.detail.DetailVoteViewModel
 import com.cpastone.governow.home.ui.login.LoginScreenViewModel
 import com.cpastone.governow.home.ui.profile.ProfileViewModel
 import com.cpastone.governow.home.ui.signup.SignUpScreenViewModel
@@ -39,7 +40,9 @@ class ViewModelFactory(private val repository: UserRepository) :
             modelClass.isAssignableFrom(WelcomeViewModel::class.java) -> {
                 WelcomeViewModel(repository) as T
             }
-
+            modelClass.isAssignableFrom(DetailVoteViewModel::class.java) -> {
+                DetailVoteViewModel() as T
+            }
             else -> throw IllegalArgumentException("unknown ViewModel Class: " + modelClass.name)
         }
     }

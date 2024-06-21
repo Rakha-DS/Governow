@@ -119,6 +119,3 @@ class FormFragment : Fragment() {
         _binding = null
     }
 }
-
-
-

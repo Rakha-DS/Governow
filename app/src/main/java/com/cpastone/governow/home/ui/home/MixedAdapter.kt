@@ -84,4 +84,3 @@ class MixedAdapter(private val itemList: List<PostItem>) : RecyclerView.Adapter<
         }
     }
 }
-
