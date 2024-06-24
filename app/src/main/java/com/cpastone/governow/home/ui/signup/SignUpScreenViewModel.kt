@@ -15,8 +15,6 @@ class SignUpScreenViewModel():ViewModel() {
         runBlocking(Dispatchers.IO) {
             val call = ApiConfig.apiInstance.signUpUser(registerRequest)
             val response = call.execute()
-            Log.d("logReg", response.toString())
-            Log.d("logReg1", response.body()?.message.toString())
             if (response.isSuccessful) {
                 result = RegisterResponse(response.body()?.message)
             }

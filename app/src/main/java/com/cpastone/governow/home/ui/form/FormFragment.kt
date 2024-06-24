@@ -46,7 +46,6 @@ class FormFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set up the spinner
         aspirationArrayAdapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.aspiration_array,
@@ -56,19 +55,16 @@ class FormFragment : Fragment() {
         }
         binding.spinner.adapter = aspirationArrayAdapter
 
-        // Set up RecyclerView
         binding.rvItemForm.layoutManager = LinearLayoutManager(context)
         aspirationAdapter = FormAdapter(dummyData, requireContext())
         binding.rvItemForm.adapter = aspirationAdapter
 
-        // Spinner item selected listener
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 filterDataByCategory(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
             }
         }
 
@@ -78,7 +74,6 @@ class FormFragment : Fragment() {
     private fun fetchAspirations() {
         swipeRefreshLayout.isRefreshing = true
 
-        // Perform the network request asynchronously using enqueue()
         ApiConfig.apiInstance.getAllAspirations().enqueue(object : Callback<GetAllAspirationResponse> {
             override fun onResponse(call: Call<GetAllAspirationResponse>, response: Response<GetAllAspirationResponse>) {
                 swipeRefreshLayout.isRefreshing = false
@@ -90,16 +85,13 @@ class FormFragment : Fragment() {
                         aspirationAdapter.updateData(dummyData)
                         aspirationArrayAdapter.notifyDataSetChanged()
                     } else {
-                        // Handle null response or empty data
                     }
                 } else {
-                    // Handle unsuccessful response
                 }
             }
 
             override fun onFailure(call: Call<GetAllAspirationResponse>, t: Throwable) {
                 swipeRefreshLayout.isRefreshing = false
-                // Handle failure
             }
         })
     }

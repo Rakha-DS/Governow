@@ -36,7 +36,6 @@ class LoginScreenActivity : AppCompatActivity() {
         runBlocking(Dispatchers.IO)  {
             val user = viewModel.getSession()
 
-            Log.d("hihi", user.token.toString())
 
             if(user.token != null && user.token != ""){
                 startActivity(Intent(this@LoginScreenActivity, HomeActivity::class.java))

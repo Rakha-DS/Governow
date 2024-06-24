@@ -108,7 +108,7 @@ class AddAspirationActivity : AppCompatActivity() {
                             success = true
                         }else{
                             buttonSave.isEnabled = true
-                            Toast.makeText(this, "Error, Fill all field", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Server Error: ${response?.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

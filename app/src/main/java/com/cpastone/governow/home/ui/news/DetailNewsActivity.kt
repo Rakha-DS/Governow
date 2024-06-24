@@ -16,13 +16,11 @@ class DetailNewsActivity : AppCompatActivity() {
         binding = ActivityDetailNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Get data from intent
         val title = intent.getStringExtra("title")
         val imageUrl = intent.getStringExtra("imageUrl")
         val date = intent.getStringExtra("date")
         val description = intent.getStringExtra("description")
 
-        // Set data to views
         binding.storyTitle.text = title
         binding.textDescription.text = date
         binding.tvDetailDescription.text = description

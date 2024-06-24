@@ -26,7 +26,6 @@ class DetailVoteActivity : AppCompatActivity() {
         val postId = intent.getStringExtra("POST_ID")
 
         val post = fetchPost(postId.toString())
-        Log.d("hohoy", postId.toString())
 
         binding.tvVoteQuestion.text = post?.caption
 

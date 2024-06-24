@@ -86,7 +86,6 @@ class ProfileUserFragment : Fragment() {
                 call: Call<UserProfileResponse>,
                 response: Response<UserProfileResponse>
             ) {
-                Log.d("respons", response.toString())
                 if (response.isSuccessful) {
                     val userProfile = response.body()?.data
                     binding.tvNameProfile.text = userProfile?.username
@@ -95,7 +94,6 @@ class ProfileUserFragment : Fragment() {
                         .placeholder(R.drawable.ic_person)
                         .into(binding.imgAvatarProfile)
                 } else {
-                    Log.d("tessaas", "kntl")
                 }
             }
 

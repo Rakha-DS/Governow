@@ -31,23 +31,18 @@ class NewsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
 
-        // Initialize SwipeRefreshLayout, RecyclerView, and SearchView
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_news)
         recyclerView = view.findViewById(R.id.recycler_view_news)
         searchView = view.findViewById(R.id.search_view)
 
-        // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = NewsAdapter(filteredNewsList)
         recyclerView.adapter = adapter
 
-        // Set up SwipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
-            // Refresh the data
             fetchNews()
         }
 
-        // Set up SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -67,7 +62,6 @@ class NewsFragment : Fragment() {
     private fun fetchNews() {
         swipeRefreshLayout.isRefreshing = true
 
-        // Perform the network request asynchronously using enqueue()
         ApiConfig.apiInstance.getAllNews().enqueue(object : Callback<NewsResponse> {
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
                 swipeRefreshLayout.isRefreshing = false
@@ -80,16 +74,13 @@ class NewsFragment : Fragment() {
                         filteredNewsList.addAll(newsList)
                         adapter.updateData(filteredNewsList)
                     } else {
-                        // Handle null response or empty data
                     }
                 } else {
-                    // Handle unsuccessful response
                 }
             }
 
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                 swipeRefreshLayout.isRefreshing = false
-                // Handle failure
             }
         })
     }

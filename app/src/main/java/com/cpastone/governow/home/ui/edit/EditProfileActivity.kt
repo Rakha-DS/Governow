@@ -27,6 +27,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import androidx.fragment.app.commit
+import com.cpastone.governow.data.respone.UpdateProfileResponse
 
 class EditProfileActivity : AppCompatActivity() {
     private val viewModel by viewModels<EditProfileViewModel> {
@@ -50,7 +51,6 @@ class EditProfileActivity : AppCompatActivity() {
                 .into(binding.imgAvatar)
 
             currentUri = uri
-            Log.d("hohom", currentUri.toString())
         }
     }
 
@@ -107,24 +107,17 @@ class EditProfileActivity : AppCompatActivity() {
                 compressedPhoto?.let { compressed ->
                     val requestFile = compressed.asRequestBody("image/jpg".toMediaTypeOrNull())
                     val body = MultipartBody.Part.createFormData("attachment", compressed.name, requestFile)
-                    Log.d("hohon", body.toString())
-                    // Log the body
-                    Log.d("hohon", "Body: $body")
 
                     val fullNameBody = fullName.toRequestBody("text/plain".toMediaTypeOrNull())
                     val usernameBody = username.toRequestBody("text/plain".toMediaTypeOrNull())
                     val emailBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
                     val insertStory = viewModel.updateProfile(token, UpdateProfileRequest(fullNameBody, emailBody, usernameBody, body))
-
-                    // Log fullName, email, and username
-                    Log.d("hohon", "Full Name: $fullName")
-                    Log.d("hohon", "Email: $email")
-                    Log.d("hohon", "Username: $username")
+                    
 
                     if(insertStory != null && insertStory.message != ""){
                         finish()
                     }else{
-                        Toast.makeText(this, "Error, Fill all field", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Server Error: ${insertStory?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

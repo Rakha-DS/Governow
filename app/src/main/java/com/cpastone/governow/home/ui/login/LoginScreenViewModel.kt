@@ -36,12 +36,9 @@ class LoginScreenViewModel(private val repository: UserRepository) : ViewModel()
         runBlocking(Dispatchers.IO) {
             val call = ApiConfig.apiInstance.loginUser(LoginRequest(email, password))
             val response = call.execute()
-            Log.d("hohox", response.toString())
-            Log.d("hohoy", response.body()?.message.toString())
             if (response.isSuccessful) {
                 result = LoginResponse(response.body()?.message, response.body()?.token)
             }else{
-                Log.d("hoho", "denis")
             }
         }
 
